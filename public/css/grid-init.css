@@ -1,0 +1,93 @@
+/*
+ * Initialize CSS variables that the grid calc() cascade depends on.
+ */
+:root {
+  --screen-width: 100vw;
+  --static-vh: 100vh;
+}
+
+/* Scrollbar compensation - desktop browsers typically have ~15px scrollbar */
+@supports (scrollbar-gutter: stable) {
+  :root {
+    --screen-width: 100vw;
+  }
+}
+
+/* Mobile: no scrollbar, different edge spacing */
+@media (max-width: 767px) {
+  :root {
+    --screen-width: 100vw;
+    --static-vh: 100vh;
+  }
+}
+
+/* Tablet */
+@media (min-width: 768px) and (max-width: 991px) {
+  :root {
+    --screen-width: 100vw;
+  }
+}
+
+/* The vendor JS sets opacity:1 after layout calc. Without that JS, force visible. */
+.fb-element-type-image-grid {
+  opacity: 1 !important;
+}
+
+/* The vendor masonry JS calculates absolute positions for a single viewport width.
+   Without that JS, the pixel-based top values don't reflow on resize.
+   Override to CSS columns at all breakpoints, reading column count from the
+   inline CSS variables set on each grid container. */
+.fb-element-type-image-grid.masonry-active {
+  display: block !important;
+  width: auto !important;
+  height: auto !important;
+  position: relative !important;
+  columns: var(--column, 3);
+  column-gap: var(--image-spacing, 16px);
+}
+
+.fb-element-type-image-grid.masonry-active .fb-element-type-image-grid__image-wrapper {
+  position: relative !important;
+  top: auto !important;
+  left: auto !important;
+  width: auto !important;
+  break-inside: avoid;
+}
+
+.fb-element-type-image-grid.masonry-active .fb-element-type-image-grid__image {
+  height: auto !important;
+}
+
+@media (max-width: 991px) {
+  .fb-element-type-image-grid.masonry-active {
+    columns: var(--column_tablet, 3);
+  }
+}
+
+@media (max-width: 767px) {
+  .fb-element-type-image-grid.masonry-active {
+    columns: var(--column_mobile, 2);
+  }
+}
+
+/* Header height fallback - normally set by JS measuring the header */
+.theme-container {
+  --header-height: 80px;
+  --sticky-header-height: 60px;
+}
+
+/* Sticky header: beige background with dark text when scrolled past hero */
+.fb-block-padding-wrap--sticky {
+  background-color: var(--primary-background, #F2F2ED) !important;
+}
+
+/* Override the white-override when sticky - force dark text */
+.fb-block-padding-wrap--sticky .fb-block--white-override {
+  --primary-headings: #23251E !important;
+}
+
+/* Transition for smooth color change */
+div[role="banner"] .navigation__link,
+div[role="banner"] .site-logo--text {
+  transition: color 0.3s ease;
+}

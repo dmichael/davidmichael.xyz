@@ -1,0 +1,22 @@
+{
+  "publications": [
+    {
+      "title": "Musical Automata as Dynamical Systems",
+      "citation": "Adaptive Behavior, vol. 14, no. 2, 2006, pp. 105–134. SAGE Publications, doi:10.1177/10597123060140020.",
+      "abstract": "This paper explores the use of dynamical systems as a framework for understanding how musically autonomous behavior can be achieved in artifact. Just as dynamics has offered a breakout strategy for the perceived limitations of artificial intelligence, so too can dynamics offer a solution to the current limitations of autonomous generative music systems. By studying the biophysics of birdsong, a dynamics-based agent template is developed, with particular focus given to the actuator.",
+      "image": "adaptive-behavior-front-22d557c5-1500.jpg"
+    },
+    {
+      "title": "Artificial Anuran Choruses",
+      "citation": "A-Life for Music: Music and Computer Models of Living Systems, edited by Eduardo Reck Miranda, A-R Editions, 2007.",
+      "abstract": "Although chorus models can be useful to composers working with agent-based artificial-life (a-life) models in music by providing a biologically plausible mechanism for rhythmic coordination, these models can alternatively be used to produce a different kind of a-life-based music altogether. Rather than a wholesale appropriation of the algorithms for creative exploration, an artificial chorus can capture and reproduce a musical event from the natural world as a set of autonomous agents.",
+      "image": "Untitled-5678cc31-1500.jpg"
+    },
+    {
+      "title": "Toward a Dark Nature Recording",
+      "citation": "Organised Sound, vol. 16, no. 3, 2011, pp. 206–210. Cambridge University Press, doi:10.1017/S1355771811000239.",
+      "abstract": "Nature sound recording has long been criticised for the artifice of the documents it produces. Joining an ecology of thought that includes Timothy Morton's dark ecology and Steven Vogel's critique of nature's \"naturalness\", this paper argues for a new paradigm in nature sound recording — one that embraces contamination, anthropogenic sound, and the impossibility of separating observer from observed.",
+      "image": "organised-sound-front-456677c5-1500.jpg"
+    }
+  ]
+}

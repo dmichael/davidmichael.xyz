@@ -1,0 +1,1 @@
+const o=document.querySelector(".fb-element-type-back-to-top .fb-icon-to-top");o?.addEventListener("click",()=>{document.querySelector("html")?.scroll({top:0,behavior:"smooth"})});const t={};export{t as default};

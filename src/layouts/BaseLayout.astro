@@ -1,0 +1,330 @@
+---
+import "../styles/global.css";
+
+interface Props {
+  title: string;
+  heroOverlay?: boolean;
+}
+
+const { title, heroOverlay = false } = Astro.props;
+
+const navItems = [
+  { label: "Home", href: "/" },
+  {
+    label: "Photography",
+    children: [
+      { label: "Trophies", href: "/trophies/" },
+      { label: "Landscapes", href: "/landscapes/" },
+    ],
+  },
+  {
+    label: "Discography",
+    children: [
+      { label: "The Microphone's Gaze", href: "/the-microphones-gaze/" },
+      { label: "The Slaughterhouse", href: "/the-slaughterhouse/" },
+      { label: "Microphones Are Not Ears", href: "/microphones-are-not-ears/" },
+      { label: "Mmabolela", href: "/mmabolela/" },
+      { label: "El Yunque", href: "/el-yunque/" },
+      { label: "Shangri-La", href: "/shangri-la/" },
+    ],
+  },
+  { label: "Publications", href: "/writing/" },
+];
+
+const currentPath = Astro.url.pathname;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <link rel="preconnect" href="/fonts/" />
+  </head>
+  <body>
+    <header class:list={["site-header", { "site-header--overlay": heroOverlay }]}>
+      <nav class="nav">
+        <div class="nav__left">
+          {navItems.slice(0, 2).map((item) =>
+            item.children ? (
+              <div class="nav__dropdown">
+                <button class="nav__link nav__link--dropdown">
+                  {item.label} <span class="nav__indicator">+</span>
+                </button>
+                <div class="nav__dropdown-menu">
+                  {item.children.map((child) => (
+                    <a href={child.href} class:list={["nav__dropdown-link", { active: currentPath === child.href }]}>
+                      {child.label}
+                    </a>
+                  ))}
+                </div>
+              </div>
+            ) : (
+              <a href={item.href} class:list={["nav__link", { active: currentPath === item.href }]}>
+                {item.label}
+              </a>
+            )
+          )}
+        </div>
+
+        <a href="/" class="nav__title">David Michael</a>
+
+        <div class="nav__right">
+          {navItems.slice(2).map((item) =>
+            item.children ? (
+              <div class="nav__dropdown">
+                <button class="nav__link nav__link--dropdown">
+                  {item.label} <span class="nav__indicator">+</span>
+                </button>
+                <div class="nav__dropdown-menu">
+                  {item.children.map((child) => (
+                    <a href={child.href} class:list={["nav__dropdown-link", { active: currentPath === child.href }]}>
+                      {child.label}
+                    </a>
+                  ))}
+                </div>
+              </div>
+            ) : (
+              <a href={item.href} class:list={["nav__link", { active: currentPath === item.href }]}>
+                {item.label}
+              </a>
+            )
+          )}
+        </div>
+
+        <button class="nav__mobile-toggle" aria-label="Menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </nav>
+    </header>
+
+    <main>
+      <slot />
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer__inner">
+        <span class="footer__copyright">&copy; 2026 David Michael</span>
+        <a href="https://x.com/0xDavidMichael" class="footer__social" aria-label="X (Twitter)" target="_blank" rel="noopener">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+          </svg>
+        </a>
+        <a href="#top" class="footer__top" aria-label="Back to top">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 19V5M5 12l7-7 7 7"/>
+          </svg>
+        </a>
+      </div>
+    </footer>
+
+    <script>
+      const header = document.querySelector('.site-header');
+      if (header && header.classList.contains('site-header--overlay')) {
+        const onScroll = () => {
+          if (window.scrollY > 100) {
+            header.classList.add('site-header--scrolled');
+          } else {
+            header.classList.remove('site-header--scrolled');
+          }
+        };
+        window.addEventListener('scroll', onScroll, { passive: true });
+        onScroll();
+      }
+    </script>
+  </body>
+</html>
+
+<style>
+  .site-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    padding: 1.5rem var(--horizontal-padding);
+  }
+
+  .nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: var(--max-page-width);
+    margin: 0 auto;
+  }
+
+  .nav__left,
+  .nav__right {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    flex: 1;
+  }
+
+  .nav__right {
+    justify-content: flex-end;
+  }
+
+  .nav__title {
+    font-family: var(--font-family);
+    font-weight: 500;
+    font-size: min(1.125rem, 1rem + 0.14vw);
+    letter-spacing: 0.19em;
+    text-transform: uppercase;
+    text-align: center;
+    white-space: nowrap;
+  }
+
+  .nav__link {
+    font-family: var(--font-family);
+    font-weight: 400;
+    font-size: min(0.8125rem, 1rem - 0.21vw);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    line-height: 1.26;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--primary-headings);
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+  }
+
+  .nav__link.active {
+    opacity: 0.5;
+  }
+
+  .nav__indicator {
+    font-size: 0.75em;
+    margin-left: 0.15em;
+  }
+
+  .nav__dropdown:hover .nav__indicator {
+    opacity: 0.5;
+  }
+
+  .nav__dropdown {
+    position: relative;
+  }
+
+  .nav__dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 0.75rem 1rem;
+    min-width: 220px;
+    background: var(--primary-background);
+    z-index: 101;
+    align-items: center;
+  }
+
+  .nav__dropdown:hover .nav__dropdown-menu {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .nav__dropdown-link {
+    font-size: min(0.857rem, 1rem - 0.16vw);
+    line-height: 1.5;
+    padding: 0.35rem 0;
+    text-align: center;
+  }
+
+  .nav__dropdown-link.active {
+    opacity: 0.5;
+  }
+
+  .nav__mobile-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 4px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+  }
+
+  .nav__mobile-toggle span {
+    display: block;
+    width: 20px;
+    height: 1.5px;
+    background: var(--primary-headings);
+  }
+
+  .site-header--overlay .nav__link,
+  .site-header--overlay .nav__title {
+    color: #fff;
+  }
+
+  .nav__dropdown-menu {
+    background: var(--primary-background);
+  }
+
+  .nav__dropdown-link {
+    color: var(--primary-headings);
+  }
+
+  .site-header--scrolled {
+    background-color: var(--primary-background);
+    transition: background-color 0.3s ease;
+  }
+
+  .site-header--scrolled .nav__link,
+  .site-header--scrolled .nav__title,
+  .site-header--scrolled .nav__dropdown-link {
+    color: var(--primary-headings);
+  }
+
+  /* Footer */
+  .site-footer {
+    padding: 2rem var(--horizontal-padding);
+    border-top: 1px solid var(--primary-details);
+  }
+
+  .footer__inner {
+    max-width: var(--max-page-width);
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .footer__copyright {
+    font-size: 0.75rem;
+    letter-spacing: 0.05em;
+  }
+
+  .footer__social,
+  .footer__top {
+    color: var(--primary-paragraphs);
+    opacity: 0.6;
+    transition: opacity 0.2s;
+  }
+
+  .footer__social:hover,
+  .footer__top:hover {
+    opacity: 1;
+  }
+
+  /* Mobile */
+  @media (max-width: 767px) {
+    .nav__left,
+    .nav__right {
+      display: none;
+    }
+
+    .nav__mobile-toggle {
+      display: flex;
+    }
+
+    .nav__title {
+      font-size: 0.875rem;
+    }
+  }
+</style>

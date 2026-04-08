@@ -1,0 +1,1 @@
+const e={moreSpacing:"var(--grid-more-spacing)",regularSpacing:"var(--elements-spacing-gap)",noSpacing:"0px"},a={large:10,medium:7,small:5,large_mobile:5,medium_mobile:4,small_mobile:3};export{a as r,e as s};

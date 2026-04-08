@@ -1,0 +1,168 @@
+/* Izmir Font */
+@font-face {
+  font-family: "Izmir";
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+  src: url("/fonts/n3.woff2") format("woff2"), url("/fonts/n3.woff") format("woff");
+}
+@font-face {
+  font-family: "Izmir";
+  font-weight: 300;
+  font-style: italic;
+  font-display: swap;
+  src: url("/fonts/i3.woff2") format("woff2"), url("/fonts/i3.woff") format("woff");
+}
+@font-face {
+  font-family: "Izmir";
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  src: url("/fonts/n4.woff2") format("woff2"), url("/fonts/n4.woff") format("woff");
+}
+@font-face {
+  font-family: "Izmir";
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+  src: url("/fonts/i4.woff2") format("woff2"), url("/fonts/i4.woff") format("woff");
+}
+@font-face {
+  font-family: "Izmir";
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+  src: url("/fonts/n5.woff2") format("woff2"), url("/fonts/n5.woff") format("woff");
+}
+@font-face {
+  font-family: "Izmir";
+  font-weight: 500;
+  font-style: italic;
+  font-display: swap;
+  src: url("/fonts/i5.woff2") format("woff2"), url("/fonts/i5.woff") format("woff");
+}
+@font-face {
+  font-family: "Izmir";
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+  src: url("/fonts/n7.woff2") format("woff2"), url("/fonts/n7.woff") format("woff");
+}
+@font-face {
+  font-family: "Izmir";
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+  src: url("/fonts/i7.woff2") format("woff2"), url("/fonts/i7.woff") format("woff");
+}
+
+/* Design Tokens */
+:root {
+  --primary-background: #F2F2ED;
+  --primary-headings: #23251E;
+  --primary-paragraphs: #23251E;
+  --primary-details: #D7CCBA;
+  --accent-background: #DADBD1;
+  --accent-headings: #23251E;
+  --accent-paragraphs: #23251E;
+  --accent-details: #B1B6A2;
+  --button-background: #7B7063;
+  --button-text: #FFFFFF;
+  --button-background-hover: #5A5E50;
+  --button-text-hover: #FFFFFF;
+
+  --font-family: "Izmir", sans-serif;
+  --max-page-width: 1200px;
+  --horizontal-padding: 5vw;
+  --block-padding: 4.5vmax;
+}
+
+/* Reset */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-family);
+  font-weight: 400;
+  color: var(--primary-paragraphs);
+  background-color: var(--primary-background);
+  line-height: 1.78;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  color: var(--primary-paragraphs);
+  text-decoration: none;
+}
+
+a:hover {
+  opacity: 0.7;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 400;
+  color: var(--primary-headings);
+}
+
+h1 {
+  font-size: min(2.375rem, 1rem + 1.53vw);
+  line-height: 1.5;
+  letter-spacing: -0.02em;
+}
+
+h2 {
+  font-size: min(1.75rem, 1rem + 0.83vw);
+  line-height: 1.5;
+}
+
+h3 {
+  font-size: min(1.5rem, 1rem + 0.56vw);
+  line-height: 1.5;
+}
+
+h4 {
+  font-size: min(1.125rem, 1rem + 0.14vw);
+  line-height: 1.4;
+  letter-spacing: 0.17em;
+  text-transform: uppercase;
+}
+
+h5 {
+  font-size: min(0.875rem, 1rem - 0.14vw);
+  line-height: 1.6;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+h6 {
+  font-size: min(0.75rem, 1rem - 0.28vw);
+  line-height: 1.5;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+}
+
+p {
+  font-size: min(1.125rem, 1rem + 0.14vw);
+  line-height: 1.78;
+}
+
+.pullquote {
+  font-size: min(1.875rem, 1rem + 0.97vw);
+  line-height: 1.4;
+  letter-spacing: -0.02em;
+}

@@ -1,0 +1,146 @@
+---
+import BaseLayout from "./BaseLayout.astro";
+
+interface ImageData {
+  default: string;
+  sizes: Record<string, string>;
+}
+
+interface Props {
+  title: string;
+  hero: ImageData | null;
+  heroFocus?: string;
+  gallery: ImageData[];
+  imgBase: string;
+}
+
+const { title, hero, heroFocus = "50% 50%", gallery, imgBase } = Astro.props;
+
+// Reorder for CSS columns: convert row-first order to column-first
+// so that CSS columns (which fill top-to-bottom) display left-to-right
+function reorderForColumns(items: ImageData[], cols: number): ImageData[] {
+  const rows = Math.ceil(items.length / cols);
+  const reordered: ImageData[] = [];
+  for (let col = 0; col < cols; col++) {
+    for (let row = 0; row < rows; row++) {
+      const idx = row * cols + col;
+      if (idx < items.length) {
+        reordered.push(items[idx]);
+      }
+    }
+  }
+  return reordered;
+}
+
+const orderedGallery = reorderForColumns(gallery, 3);
+
+function srcset(sizes: Record<string, string>) {
+  return Object.entries(sizes)
+    .map(([w, fname]) => `${imgBase}/${fname} ${w}`)
+    .join(", ");
+}
+---
+
+<BaseLayout title={`${title} - David Michael`} heroOverlay>
+  <section class="hero-banner">
+    {hero && (
+      <img
+        class="hero-banner__img"
+        style={`--hero-focus: ${heroFocus}`}
+        src={`${imgBase}/${hero.default}`}
+        srcset={srcset(hero.sizes)}
+        sizes="100vw"
+        alt={title}
+        loading="eager"
+      />
+    )}
+    <h1 class="hero-banner__title">{title}</h1>
+  </section>
+
+  <section class="gallery">
+    <div class="gallery__grid">
+      {orderedGallery.map((img) => (
+        <div class="gallery__item">
+          <img
+            src={`${imgBase}/${img.default}`}
+            srcset={srcset(img.sizes)}
+            sizes="(min-width: 992px) calc(100vw / 3), (min-width: 768px) calc(100vw / 3), calc(100vw / 2)"
+            alt=""
+            loading="lazy"
+          />
+        </div>
+      ))}
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .hero-banner {
+    position: relative;
+    width: 100%;
+    height: 55vh;
+    min-height: 350px;
+    overflow: hidden;
+    display: flex;
+    align-items: flex-end;
+    padding: 2rem var(--horizontal-padding);
+    margin-top: -80px;
+  }
+
+  .hero-banner__img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: var(--hero-focus, 50% 50%);
+    z-index: 0;
+  }
+
+  .hero-banner__title {
+    position: relative;
+    z-index: 1;
+    color: #fff;
+    font-size: min(3.375rem, 1rem + 2.64vw);
+    font-weight: 400;
+    line-height: 1.3;
+    max-width: var(--max-page-width);
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .gallery {
+    padding: 2rem 6vw;
+  }
+
+  .gallery__grid {
+    columns: 3;
+    column-gap: 16px;
+  }
+
+  .gallery__item {
+    break-inside: avoid;
+    margin-bottom: 16px;
+    overflow: hidden;
+  }
+
+  .gallery__item img {
+    width: 100%;
+    display: block;
+    transition: transform 0.3s ease;
+  }
+
+  .gallery__item img:hover {
+    transform: scale(1.02);
+  }
+
+  @media (max-width: 767px) {
+    .gallery__grid {
+      columns: 2;
+    }
+
+    .hero-banner {
+      height: 40vh;
+    }
+  }
+</style>

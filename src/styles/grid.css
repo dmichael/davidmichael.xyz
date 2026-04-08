@@ -1,0 +1,48 @@
+/*
+ * Simplified grid system.
+ *
+ * Original uses 24 content columns + 2 margin columns (26 total).
+ * Elements are positioned with:
+ *   grid-area: var(--top) / var(--left) / calc(var(--top) + var(--height)) / calc(var(--left) + var(--width))
+ *
+ * We replicate this with a 26-column grid where columns 2-25 are the content area.
+ * Set --rows on the block, and --top/--left/--width/--height on each element.
+ */
+
+.pg-block {
+  display: grid;
+  grid-template-columns: 1fr repeat(24, minmax(0, calc(var(--max-page-width) / 24))) 1fr;
+  grid-template-rows: repeat(var(--rows, 8), minmax(2.5vw, auto));
+  width: 100%;
+  padding: calc(var(--block-padding) * var(--pad-top, 1)) 0
+           calc(var(--block-padding) * var(--pad-bottom, 1)) 0;
+}
+
+.pg-el {
+  grid-area: var(--top) / var(--left) / calc(var(--top) + var(--height)) / calc(var(--left) + var(--width));
+  min-width: 0;
+  min-height: 0;
+}
+
+/* Responsive overrides - elements can set --left-t, --width-t etc for tablet */
+@media (min-width: 768px) and (max-width: 991px) {
+  .pg-el[style*="--left-t"] {
+    --left: var(--left-t);
+    --width: var(--width-t);
+    --top: var(--top-t);
+    --height: var(--height-t);
+  }
+}
+
+@media (max-width: 767px) {
+  .pg-block {
+    grid-template-columns: 1fr repeat(10, minmax(0, 1fr)) 1fr;
+    grid-template-rows: repeat(var(--rows-m, var(--rows, 6)), minmax(5vw, auto));
+  }
+  .pg-el[style*="--left-m"] {
+    --left: var(--left-m);
+    --width: var(--width-m);
+    --top: var(--top-m);
+    --height: var(--height-m);
+  }
+}
