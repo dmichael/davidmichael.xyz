@@ -1,15 +1,19 @@
 ---
 // Auto-generated. Title: Mmabolela - David Michael
+// Ensure trailing slash so <base> resolves relative paths correctly
+const rawBase = import.meta.env.BASE_URL;
+const base = rawBase.endsWith('/') ? rawBase : rawBase + '/';
 ---
 <!doctype html>
 <html lang="en" class="client-side scrollbar-setting-false">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <base href={base} />
   <title>Mmabolela - David Michael</title>
-  <link rel="stylesheet" href="/css/base.css" />
-  <link rel="stylesheet" href="/css/icons.css" />
-  <link rel="stylesheet" href="/css/grid-init.css" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/icons.css" />
+  <link rel="stylesheet" href="css/grid-init.css" />
   <style set:html={`svg:not(:root).svg-inline--fa {
   overflow: visible;
 }
@@ -471,56 +475,56 @@
     font-weight: 300;
     font-style: normal;
     font-display: auto;
-    src: url("/fonts/n3.woff2") format("woff2"), url("/fonts/n3.woff") format("woff");
+    src: url("fonts/n3.woff2") format("woff2"), url("fonts/n3.woff") format("woff");
 }
 @font-face {
     font-family: "Izmir";
     font-weight: 300;
     font-style: italic;
     font-display: auto;
-    src: url("/fonts/i3.woff2") format("woff2"), url("/fonts/i3.woff") format("woff");
+    src: url("fonts/i3.woff2") format("woff2"), url("fonts/i3.woff") format("woff");
 }
 @font-face {
     font-family: "Izmir";
     font-weight: 400;
     font-style: normal;
     font-display: auto;
-    src: url("/fonts/n4.woff2") format("woff2"), url("/fonts/n4.woff") format("woff");
+    src: url("fonts/n4.woff2") format("woff2"), url("fonts/n4.woff") format("woff");
 }
 @font-face {
     font-family: "Izmir";
     font-weight: 400;
     font-style: italic;
     font-display: auto;
-    src: url("/fonts/i4.woff2") format("woff2"), url("/fonts/i4.woff") format("woff");
+    src: url("fonts/i4.woff2") format("woff2"), url("fonts/i4.woff") format("woff");
 }
 @font-face {
     font-family: "Izmir";
     font-weight: 500;
     font-style: normal;
     font-display: auto;
-    src: url("/fonts/n5.woff2") format("woff2"), url("/fonts/n5.woff") format("woff");
+    src: url("fonts/n5.woff2") format("woff2"), url("fonts/n5.woff") format("woff");
 }
 @font-face {
     font-family: "Izmir";
     font-weight: 500;
     font-style: italic;
     font-display: auto;
-    src: url("/fonts/i5.woff2") format("woff2"), url("/fonts/i5.woff") format("woff");
+    src: url("fonts/i5.woff2") format("woff2"), url("fonts/i5.woff") format("woff");
 }
 @font-face {
     font-family: "Izmir";
     font-weight: 700;
     font-style: normal;
     font-display: auto;
-    src: url("/fonts/n7.woff2") format("woff2"), url("/fonts/n7.woff") format("woff");
+    src: url("fonts/n7.woff2") format("woff2"), url("fonts/n7.woff") format("woff");
 }
 @font-face {
     font-family: "Izmir";
     font-weight: 700;
     font-style: italic;
     font-display: auto;
-    src: url("/fonts/i7.woff2") format("woff2"), url("/fonts/i7.woff") format("woff");
+    src: url("fonts/i7.woff2") format("woff2"), url("fonts/i7.woff") format("woff");
 }
       
 
@@ -555,7 +559,7 @@
           
       <li class="navigation__item">
         <div class="navigation__link-group">
-          <a class="navigation__link js-menu-link" href="/">
+          <a class="navigation__link js-menu-link" href="">
             <span class="page-name">
               Home
             </span>
@@ -576,14 +580,14 @@
           <div class="navigation__item--dropdown js-submenu-dropdown" id="navigation-submenu-12251089" aria-label="Dropdown Menu" style="opacity: 0; position: absolute; inset: 0px auto auto 0px; margin: 0px; transform: translate3d(-54px, 15px, 0px);" data-popper-placement="bottom">
             <ul class="navigation__items dropdown-navigation__items">
                               <li class="navigation__item dropdown-navigation__item">
-                  <a class="navigation__link dropdown-navigation__link js-menu-link" href="/trophies/" tabindex="-1">
+                  <a class="navigation__link dropdown-navigation__link js-menu-link" href="trophies/" tabindex="-1">
                     <span class="page-name">
                       Trophies
                     </span>
                   </a>
                 </li>
                               <li class="navigation__item dropdown-navigation__item">
-                  <a class="navigation__link dropdown-navigation__link js-menu-link" href="/landscapes/" tabindex="-1">
+                  <a class="navigation__link dropdown-navigation__link js-menu-link" href="landscapes/" tabindex="-1">
                     <span class="page-name">
                       Landscapes
                     </span>
@@ -606,42 +610,42 @@
           <div class="navigation__item--dropdown js-submenu-dropdown" id="navigation-submenu-12245121" aria-label="Dropdown Menu" style="opacity: 0; position: absolute; inset: 0px auto auto 0px; margin: 0px; transform: translate3d(0px, 0px, 0px);" data-popper-reference-hidden="" data-popper-escaped="" data-popper-placement="bottom">
             <ul class="navigation__items dropdown-navigation__items">
                               <li class="navigation__item dropdown-navigation__item">
-                  <a class="navigation__link dropdown-navigation__link js-menu-link" href="/the-microphones-gaze/" tabindex="-1">
+                  <a class="navigation__link dropdown-navigation__link js-menu-link" href="the-microphones-gaze/" tabindex="-1">
                     <span class="page-name">
                       The Microphone's Gaze
                     </span>
                   </a>
                 </li>
                               <li class="navigation__item dropdown-navigation__item">
-                  <a class="navigation__link dropdown-navigation__link js-menu-link" href="/the-slaughterhouse/" tabindex="-1">
+                  <a class="navigation__link dropdown-navigation__link js-menu-link" href="the-slaughterhouse/" tabindex="-1">
                     <span class="page-name">
                       The Slaughterhouse
                     </span>
                   </a>
                 </li>
                               <li class="navigation__item dropdown-navigation__item">
-                  <a class="navigation__link dropdown-navigation__link js-menu-link" href="/microphones-are-not-ears/" tabindex="-1">
+                  <a class="navigation__link dropdown-navigation__link js-menu-link" href="microphones-are-not-ears/" tabindex="-1">
                     <span class="page-name">
                       Microphones Are Not Ears
                     </span>
                   </a>
                 </li>
                               <li class="navigation__item dropdown-navigation__item">
-                  <a class="navigation__link dropdown-navigation__link js-menu-link" href="/mmabolela/" tabindex="-1">
+                  <a class="navigation__link dropdown-navigation__link js-menu-link" href="mmabolela/" tabindex="-1">
                     <span class="page-name">
                       Mmabolela
                     </span>
                   </a>
                 </li>
                               <li class="navigation__item dropdown-navigation__item">
-                  <a class="navigation__link dropdown-navigation__link js-menu-link" href="/el-yunque/" tabindex="-1">
+                  <a class="navigation__link dropdown-navigation__link js-menu-link" href="el-yunque/" tabindex="-1">
                     <span class="page-name">
                       El Yunque
                     </span>
                   </a>
                 </li>
                               <li class="navigation__item dropdown-navigation__item">
-                  <a class="navigation__link dropdown-navigation__link js-menu-link" href="/shangri-la/" tabindex="-1">
+                  <a class="navigation__link dropdown-navigation__link js-menu-link" href="shangri-la/" tabindex="-1">
                     <span class="page-name">
                       Shangri-La
                     </span>
@@ -653,7 +657,7 @@
           
       <li class="navigation__item navigation__item--skip">
         <div class="navigation__link-group">
-          <a class="navigation__link js-menu-link" href="/writing/" tabindex="-1">
+          <a class="navigation__link js-menu-link" href="writing/" tabindex="-1">
             <span class="page-name">
               Publications
             </span>
@@ -676,7 +680,7 @@
 							<div class="fb-element fb-element--logo fb-element--mvaligned-center fb-element--el-9799c04decd0a7 fb-element--m-lowest fb-element--m-highest">
     <div class="fb-element__content">
         <div class="fb-element-type-logo fb-element-type-logo--primary logo-content--text valign-d-center valign-t-center valign-m-center halign-d-center halign-t-center halign-m-center">
-	<a href="/">
+	<a href="">
 					<span class="site-logo--text">
 				David Michael
 			</span>
@@ -693,7 +697,7 @@
           
       <li class="navigation__item navigation__item--skip">
         <div class="navigation__link-group">
-          <a class="navigation__link js-menu-link" href="/" tabindex="-1">
+          <a class="navigation__link js-menu-link" href="" tabindex="-1">
             <span class="page-name">
               Home
             </span>
@@ -714,14 +718,14 @@
           <div class="navigation__item--dropdown js-submenu-dropdown" id="navigation-submenu-12251089" aria-label="Dropdown Menu" style="opacity: 0; position: absolute; inset: 0px auto auto 0px; margin: 0px; transform: translate3d(0px, 0px, 0px);" data-popper-reference-hidden="" data-popper-escaped="" data-popper-placement="bottom">
             <ul class="navigation__items dropdown-navigation__items">
                               <li class="navigation__item dropdown-navigation__item">
-                  <a class="navigation__link dropdown-navigation__link js-menu-link" href="/trophies/" tabindex="-1">
+                  <a class="navigation__link dropdown-navigation__link js-menu-link" href="trophies/" tabindex="-1">
                     <span class="page-name">
                       Trophies
                     </span>
                   </a>
                 </li>
                               <li class="navigation__item dropdown-navigation__item">
-                  <a class="navigation__link dropdown-navigation__link js-menu-link" href="/landscapes/" tabindex="-1">
+                  <a class="navigation__link dropdown-navigation__link js-menu-link" href="landscapes/" tabindex="-1">
                     <span class="page-name">
                       Landscapes
                     </span>
@@ -744,42 +748,42 @@
           <div class="navigation__item--dropdown js-submenu-dropdown" id="navigation-submenu-12245121" aria-label="Dropdown Menu" style="opacity: 0; position: absolute; inset: 0px auto auto 0px; margin: 0px; transform: translate3d(-55.5px, 15px, 0px);" data-popper-placement="bottom">
             <ul class="navigation__items dropdown-navigation__items">
                               <li class="navigation__item dropdown-navigation__item">
-                  <a class="navigation__link dropdown-navigation__link js-menu-link" href="/the-microphones-gaze/" tabindex="-1">
+                  <a class="navigation__link dropdown-navigation__link js-menu-link" href="the-microphones-gaze/" tabindex="-1">
                     <span class="page-name">
                       The Microphone's Gaze
                     </span>
                   </a>
                 </li>
                               <li class="navigation__item dropdown-navigation__item">
-                  <a class="navigation__link dropdown-navigation__link js-menu-link" href="/the-slaughterhouse/" tabindex="-1">
+                  <a class="navigation__link dropdown-navigation__link js-menu-link" href="the-slaughterhouse/" tabindex="-1">
                     <span class="page-name">
                       The Slaughterhouse
                     </span>
                   </a>
                 </li>
                               <li class="navigation__item dropdown-navigation__item">
-                  <a class="navigation__link dropdown-navigation__link js-menu-link" href="/microphones-are-not-ears/" tabindex="-1">
+                  <a class="navigation__link dropdown-navigation__link js-menu-link" href="microphones-are-not-ears/" tabindex="-1">
                     <span class="page-name">
                       Microphones Are Not Ears
                     </span>
                   </a>
                 </li>
                               <li class="navigation__item dropdown-navigation__item">
-                  <a class="navigation__link dropdown-navigation__link js-menu-link" href="/mmabolela/" tabindex="-1">
+                  <a class="navigation__link dropdown-navigation__link js-menu-link" href="mmabolela/" tabindex="-1">
                     <span class="page-name">
                       Mmabolela
                     </span>
                   </a>
                 </li>
                               <li class="navigation__item dropdown-navigation__item">
-                  <a class="navigation__link dropdown-navigation__link js-menu-link" href="/el-yunque/" tabindex="-1">
+                  <a class="navigation__link dropdown-navigation__link js-menu-link" href="el-yunque/" tabindex="-1">
                     <span class="page-name">
                       El Yunque
                     </span>
                   </a>
                 </li>
                               <li class="navigation__item dropdown-navigation__item">
-                  <a class="navigation__link dropdown-navigation__link js-menu-link" href="/shangri-la/" tabindex="-1">
+                  <a class="navigation__link dropdown-navigation__link js-menu-link" href="shangri-la/" tabindex="-1">
                     <span class="page-name">
                       Shangri-La
                     </span>
@@ -791,7 +795,7 @@
           
       <li class="navigation__item">
         <div class="navigation__link-group">
-          <a class="navigation__link js-menu-link" href="/writing/">
+          <a class="navigation__link js-menu-link" href="writing/">
             <span class="page-name">
               Publications
             </span>
@@ -830,7 +834,7 @@
 		<div class="block-container__block">
 			<div class="fb-block-outer js-fb-block-outer">
 									<div class="fb-block-padding-wrap fb-block-padding-wrap--boxed fb-block-padding-wrap--showBackgroundImage" style="">
-													<img class="fb-block__background-image" src="/images/mmabolela/mm_illustration-1-80bc9a0b-1500.jpg" srcset="/images/mmabolela/mm_illustration-1-2c04cfe3-300.jpg 300w, /images/mmabolela/mm_illustration-1-d7f13dcf-500.jpg 500w, /images/mmabolela/mm_illustration-1-b6e12492-1000.jpg 1000w, /images/mmabolela/mm_illustration-1-80bc9a0b-1500.jpg 1500w, /images/mmabolela/mm_illustration-1-b0137c86-2500.jpg 2500w" alt="" sizes="100vw" style="object-position: 50% 50%; opacity: 1;">
+													<img class="fb-block__background-image" src="images/mmabolela/mm_illustration-1-80bc9a0b-1500.jpg" srcset="images/mmabolela/mm_illustration-1-2c04cfe3-300.jpg 300w, images/mmabolela/mm_illustration-1-d7f13dcf-500.jpg 500w, images/mmabolela/mm_illustration-1-b6e12492-1000.jpg 1000w, images/mmabolela/mm_illustration-1-80bc9a0b-1500.jpg 1500w, images/mmabolela/mm_illustration-1-b0137c86-2500.jpg 2500w" alt="" sizes="100vw" style="object-position: 50% 50%; opacity: 1;">
 															<div class="fb-block__overlay" style="background-color: #000000; opacity: 0.28"></div>
 													
 						<div class="fb-block-subpadding-wrap">
@@ -1086,7 +1090,7 @@
 
   
 
-<script is:inline src="/js/layout-init.js"></script>
-<script is:inline src="/js/mobile-menu.js" defer></script>
+<script is:inline src="js/layout-init.js"></script>
+<script is:inline src="js/mobile-menu.js" defer></script>
 
 </html>

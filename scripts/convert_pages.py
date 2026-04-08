@@ -7,6 +7,7 @@ Strategy:
 - Strip: vendor JS, tracking, Sentry, analytics, footer badge
 - Rewrite image URLs to local paths
 - Rewrite font URLs to local paths
+- All asset paths are relative (no leading /) for <base href> compatibility
 - Wrap in a minimal HTML shell (Astro provides the doctype/head)
 """
 import re
@@ -37,16 +38,15 @@ def clean_page(html: str, page_name: str) -> str:
     styles = re.findall(r'<style[^>]*>(.*?)</style>', html, re.DOTALL)
     combined_css = "\n".join(s for s in styles if s.strip())
 
-    # Rewrite font URLs to local
+    # Rewrite font URLs to local (relative, no leading slash)
     combined_css = re.sub(
         r'url\(["\']?https?://fonts-pw\.pixieset\.com/fonts/izmir/([^"\'?\s)]+)[^"\')\s]*["\']?\)',
-        r'url("/fonts/\1")',
+        r'url("fonts/\1")',
         combined_css
     )
-    # Remove signed URL params from font references
     combined_css = re.sub(
         r'url\(["\']?//fonts-pw\.pixieset\.com/fonts/izmir/([^"\'?\s)]+)[^"\')\s]*["\']?\)',
-        r'url("/fonts/\1")',
+        r'url("fonts/\1")',
         combined_css
     )
 
@@ -76,25 +76,24 @@ def clean_page(html: str, page_name: str) -> str:
         body
     )
 
-    # Rewrite image URLs to local paths
-    # Rewrite vendor image CDN URLs to local paths
+    # Rewrite image URLs to local paths (relative, no leading slash)
     img_page = page_name if page_name != "index" else "homepage"
     body = re.sub(
         r'(src|srcset)="//images-pw\.pixieset\.com/site/[^/]+/[^/]+/([^"]+)"',
-        lambda m: f'{m.group(1)}="/images/{img_page}/{m.group(2)}"',
+        lambda m: f'{m.group(1)}="images/{img_page}/{m.group(2)}"',
         body
     )
     # Handle srcset entries (space-separated URLs within srcset attribute)
     body = re.sub(
         r'//images-pw\.pixieset\.com/site/[^/]+/[^/]+/([^\s,"]+)',
-        lambda m: f'/images/{img_page}/{m.group(1)}',
+        lambda m: f'images/{img_page}/{m.group(1)}',
         body
     )
 
-    # Also rewrite CSS background images if any
+    # Also rewrite CSS background images if any (relative)
     combined_css = re.sub(
         r'//images-pw\.pixieset\.com/site/[^/]+/[^/]+/([^\s,"\')\]]+)',
-        lambda m: f'/images/{img_page}/{m.group(1)}',
+        lambda m: f'images/{img_page}/{m.group(1)}',
         combined_css
     )
 
@@ -115,29 +114,42 @@ def clean_page(html: str, page_name: str) -> str:
         body
     )
 
-    # Inject scripts before </body> or at the end
+    # Rewrite navigation hrefs from absolute to relative (strip leading /)
+    # e.g. href="/trophies/" -> href="trophies/"
+    # But preserve href="#" and href="https://..." and href="mailto:..."
+    body = re.sub(
+        r'href="/([^"]*)"',
+        r'href="\1"',
+        body
+    )
+
+    # Inject scripts before </body> or at the end (relative paths)
     scripts = """
-<script is:inline src="/js/layout-init.js"></script>
-<script is:inline src="/js/mobile-menu.js" defer></script>
+<script is:inline src="js/layout-init.js"></script>
+<script is:inline src="js/mobile-menu.js" defer></script>
 """
     if '</body>' in body:
         body = body.replace('</body>', scripts + '</body>')
     else:
         body = body + scripts
 
-    # Build the Astro page
+    # Build the Astro page with <base href> for path resolution
     astro_page = f"""---
 // Auto-generated. Title: {title}
+// Ensure trailing slash so <base> resolves relative paths correctly
+const rawBase = import.meta.env.BASE_URL;
+const base = rawBase.endsWith('/') ? rawBase : rawBase + '/';
 ---
 <!doctype html>
 <html lang="en" class="client-side scrollbar-setting-false">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <base href={{base}} />
   <title>{title}</title>
-  <link rel="stylesheet" href="/css/base.css" />
-  <link rel="stylesheet" href="/css/icons.css" />
-  <link rel="stylesheet" href="/css/grid-init.css" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/icons.css" />
+  <link rel="stylesheet" href="css/grid-init.css" />
   <style set:html={{`{combined_css}`}} />
 </head>
 {body}
