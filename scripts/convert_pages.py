@@ -128,6 +128,7 @@ def clean_page(html: str, page_name: str) -> str:
 // Auto-generated. Title: {title}
 ---
 <!doctype html>
+<!-- Built with Astro — github.com/dmichael/davidmichael.xyz -->
 <html lang="en" class="client-side scrollbar-setting-false">
 <head>
   <meta charset="utf-8" />
